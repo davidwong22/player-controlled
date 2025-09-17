@@ -22,10 +22,12 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+          glow: "hsl(var(--secondary-glow))",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -38,6 +40,7 @@ export default {
         accent: {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
+          glow: "hsl(var(--accent-glow))",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -47,16 +50,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        sidebar: {
-          DEFAULT: "hsl(var(--sidebar-background))",
-          foreground: "hsl(var(--sidebar-foreground))",
-          primary: "hsl(var(--sidebar-primary))",
-          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-          accent: "hsl(var(--sidebar-accent))",
-          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-          border: "hsl(var(--sidebar-border))",
-          ring: "hsl(var(--sidebar-ring))",
-        },
+        // Achievement rarity colors
+        bronze: "hsl(var(--bronze))",
+        silver: "hsl(var(--silver))",
+        gold: "hsl(var(--gold))",
+        platinum: "hsl(var(--platinum))",
+        legendary: "hsl(var(--legendary))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -65,25 +64,55 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "achievement-unlock": {
+          "0%": {
+            transform: "scale(0.8) rotate(-5deg)",
+            opacity: "0",
+            filter: "blur(8px)",
           },
-          to: {
-            height: "0",
+          "50%": {
+            transform: "scale(1.1) rotate(2deg)",
+            filter: "blur(2px)",
+          },
+          "100%": {
+            transform: "scale(1) rotate(0deg)",
+            opacity: "1",
+            filter: "blur(0px)",
+          },
+        },
+        "achievement-pulse": {
+          "0%, 100%": {
+            boxShadow: "0 0 10px hsl(var(--primary) / 0.3)",
+          },
+          "50%": {
+            boxShadow: "0 0 25px hsl(var(--primary) / 0.6)",
+          },
+        },
+        "neon-pulse": {
+          "0%, 100%": {
+            textShadow: "0 0 5px currentColor",
+          },
+          "50%": {
+            textShadow: "0 0 20px currentColor, 0 0 30px currentColor",
           },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "achievement-unlock": "achievement-unlock 0.6s ease-out",
+        "achievement-pulse": "achievement-pulse 2s ease-in-out infinite",
+        "neon-pulse": "neon-pulse 2s ease-in-out infinite",
+      },
+      fontFamily: {
+        gaming: ["Orbitron", "monospace"],
       },
     },
   },
