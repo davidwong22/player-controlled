@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { WalletConnect } from "@/components/ui/wallet-connect";
 import { AchievementsGrid } from "@/components/achievements-grid";
-import { Shield, Eye, Zap } from "lucide-react";
+import { Eye, Zap, Gamepad2 } from "lucide-react";
+import logo from "@/assets/logo.png";
 
 const Index = () => {
   const [isWalletConnected, setIsWalletConnected] = useState(false);
@@ -25,8 +26,8 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-lg bg-gradient-neon flex items-center justify-center">
-                <Shield className="w-6 h-6 text-primary-foreground" />
+              <div className="w-10 h-10 rounded-lg bg-gradient-neon flex items-center justify-center p-1">
+                <img src={logo} alt="Private Gaming Achievements" className="w-8 h-8" />
               </div>
               <h1 className="text-xl font-gaming font-bold text-foreground">
                 Private Gaming Achievements
@@ -60,7 +61,7 @@ const Index = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
             <div className="bg-card/50 backdrop-blur-sm border border-border rounded-xl p-6 space-y-3">
               <div className="w-12 h-12 mx-auto rounded-lg bg-primary/20 flex items-center justify-center">
-                <Shield className="w-6 h-6 text-primary" />
+                <Gamepad2 className="w-6 h-6 text-primary" />
               </div>
               <h3 className="font-gaming text-lg font-semibold">Encrypted Achievements</h3>
               <p className="text-sm text-muted-foreground">
@@ -98,7 +99,7 @@ const Index = () => {
             <h3 className="text-2xl font-gaming font-bold mb-2">Your Achievement Vault</h3>
             <p className="text-muted-foreground">
               {isWalletConnected 
-                ? "Connect your wallet to reveal unlocked achievements"
+                ? "Reveal unlocked achievements to showcase your gaming prowess"
                 : "Connect your wallet to access your encrypted achievements"
               }
             </p>
