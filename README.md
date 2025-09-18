@@ -1,73 +1,93 @@
-# Welcome to your Lovable project
+# Private Gaming Achievements Platform
 
-## Project info
+A decentralized platform for managing encrypted gaming achievements using Fully Homomorphic Encryption (FHE) technology.
 
-**URL**: https://lovable.dev/projects/bce03d04-463b-4a49-8a66-fc9c88535c83
+## Features
 
-## How can I edit this code?
+- **Encrypted Achievement Storage**: Keep your gaming achievements private and encrypted on-chain
+- **Selective Reveal**: Choose which achievements to reveal and when to show them
+- **Anti-Meta Gaming**: Prevent others from exploiting your achievement patterns
+- **Real Wallet Integration**: Connect with popular wallet providers like Rainbow, MetaMask, and more
+- **FHE-Powered Privacy**: Core data encrypted using Zama's FHE technology
 
-There are several ways of editing your application.
+## Technologies
 
-**Use Lovable**
+- **Frontend**: React 18, TypeScript, Vite
+- **UI Components**: shadcn/ui, Tailwind CSS
+- **Wallet Integration**: RainbowKit, Wagmi, Viem
+- **Blockchain**: Ethereum Sepolia Testnet
+- **Privacy**: Zama FHE (Fully Homomorphic Encryption)
+- **Deployment**: Vercel
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bce03d04-463b-4a49-8a66-fc9c88535c83) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js 18+ 
+- npm or yarn
+- A Web3 wallet (MetaMask, Rainbow, etc.)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```bash
+# Clone the repository
+git clone https://github.com/davidwong22/player-controlled.git
 
-Follow these steps:
+# Navigate to the project directory
+cd player-controlled
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Install dependencies
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### Environment Variables
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Create a `.env.local` file in the root directory:
 
-**Use GitHub Codespaces**
+```env
+NEXT_PUBLIC_CHAIN_ID=11155111
+NEXT_PUBLIC_RPC_URL=https://sepolia.infura.io/v3/b18fb7e6ca7045ac83c41157ab93f990
+NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=2ec9743d0d0cd7fb94dee1a7e6d33475
+NEXT_PUBLIC_INFURA_API_KEY=b18fb7e6ca7045ac83c41157ab93f990
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Smart Contract
 
-## What technologies are used for this project?
+The platform uses a custom FHE-enabled smart contract that encrypts achievement data:
 
-This project is built with:
+- **Campaign Management**: Create and manage achievement campaigns
+- **Encrypted Storage**: All achievement data is encrypted using FHE
+- **Selective Reveal**: Control when achievements become visible
+- **Reputation System**: Track donor and charity reputation scores
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Deployment
 
-## How can I deploy this project?
+### Vercel Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/bce03d04-463b-4a49-8a66-fc9c88535c83) and click on Share -> Publish.
+1. Connect your GitHub repository to Vercel
+2. Set the environment variables in Vercel dashboard
+3. Deploy automatically on push to main branch
 
-## Can I connect a custom domain to my Lovable project?
+### Manual Deployment
 
-Yes, you can!
+```bash
+# Build the project
+npm run build
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Preview the build
+npm run preview
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details

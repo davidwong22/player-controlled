@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AchievementBadge, type Achievement } from "@/components/achievement-badge";
 import { Button } from "@/components/ui/button";
 import { Filter, Trophy, Crown, Star, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { usePlayerControlledAchievements } from "@/lib/contract";
 
 // Mock achievements data
 const mockAchievements: Achievement[] = [
@@ -101,20 +102,36 @@ export function AchievementsGrid({ isWalletConnected = false }: AchievementsGrid
   const [achievements, setAchievements] = useState(mockAchievements);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedRarity, setSelectedRarity] = useState("all");
+  const { isRegistered, playerAchievements, registerPlayer, revealAchievement } = usePlayerControlledAchievements();
 
-  const handleReveal = (id: string) => {
+  // Register player if not registered and wallet is connected
+  useEffect(() => {
+    if (isWalletConnected && !isRegistered) {
+      registerPlayer();
+    }
+  }, [isWalletConnected, isRegistered, registerPlayer]);
+
+  const handleReveal = async (id: string) => {
     if (!isWalletConnected) {
       // Show connect wallet prompt
       return;
     }
 
-    setAchievements(prev => 
-      prev.map(achievement => 
-        achievement.id === id 
-          ? { ...achievement, status: "revealed" as const, unlockedAt: new Date() }
-          : achievement
-      )
-    );
+    try {
+      // Call contract to reveal achievement
+      await revealAchievement(parseInt(id));
+      
+      // Update local state
+      setAchievements(prev => 
+        prev.map(achievement => 
+          achievement.id === id 
+            ? { ...achievement, status: "revealed" as const, unlockedAt: new Date() }
+            : achievement
+        )
+      );
+    } catch (error) {
+      console.error('Error revealing achievement:', error);
+    }
   };
 
   const filteredAchievements = achievements.filter(achievement => {

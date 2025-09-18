@@ -1,23 +1,11 @@
-import { useState } from "react";
+import { useAccount } from 'wagmi';
 import { WalletConnect } from "@/components/ui/wallet-connect";
 import { AchievementsGrid } from "@/components/achievements-grid";
 import { Eye, Zap, Gamepad2 } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 const Index = () => {
-  const [isWalletConnected, setIsWalletConnected] = useState(false);
-  const [walletAddress, setWalletAddress] = useState<string>();
-
-  const handleConnect = () => {
-    // Mock wallet connection
-    setIsWalletConnected(true);
-    setWalletAddress("0x742d35Cc6635Bc0532674B1B5E9268FE9a3E6B5C");
-  };
-
-  const handleDisconnect = () => {
-    setIsWalletConnected(false);
-    setWalletAddress(undefined);
-  };
+  const { isConnected, address } = useAccount();
 
   return (
     <div className="min-h-screen bg-background">
@@ -34,12 +22,7 @@ const Index = () => {
               </h1>
             </div>
             
-            <WalletConnect 
-              isConnected={isWalletConnected}
-              address={walletAddress}
-              onConnect={handleConnect}
-              onDisconnect={handleDisconnect}
-            />
+            <WalletConnect />
           </div>
         </div>
       </header>
@@ -98,14 +81,14 @@ const Index = () => {
           <div className="mb-8">
             <h3 className="text-2xl font-gaming font-bold mb-2">Your Achievement Vault</h3>
             <p className="text-muted-foreground">
-              {isWalletConnected 
+              {isConnected 
                 ? "Reveal unlocked achievements to showcase your gaming prowess"
                 : "Connect your wallet to access your encrypted achievements"
               }
             </p>
           </div>
           
-          <AchievementsGrid isWalletConnected={isWalletConnected} />
+          <AchievementsGrid isWalletConnected={isConnected} />
         </div>
       </section>
     </div>
